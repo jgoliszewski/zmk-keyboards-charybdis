@@ -3,6 +3,7 @@
 / {
     chosen {
         zmk,kscan = &mock_kscan;
+        zephyr,display = &oled;
     };
 
     mock_kscan: kscan_1 {
@@ -17,10 +18,37 @@
 	vtrackball: virtual_input_trackball {
 		compatible = "zmk,virtual-input";
 	};
+	vtrackball2: virtual_input_trackball2 {
+		compatible = "zmk,virtual-input";
+	};
 
 	input_relay_config_trackball {
 		compatible = "zmk,split-peripheral-input-relay";
 		device = <&vtrackball>;
 		relay-channel = <102>;
 	};
+
+	input_relay_config_trackball2 {
+		compatible = "zmk,split-peripheral-input-relay";
+		device = <&vtrackball2>;
+		relay-channel = <103>;
+	};
+};
+&pro_micro_i2c {
+    status = "okay";
+    
+    oled: ssd1306@3c {
+        compatible = "sinowealth,sh1106";
+        reg = <0x3c>;
+        width = <128>;
+        height = <64>;
+        segment-offset = <2>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <63>;
+        segment-remap;
+        com-invdir;
+        inversion-on;
+        prechargep = <0x22>;
+    };
 };
