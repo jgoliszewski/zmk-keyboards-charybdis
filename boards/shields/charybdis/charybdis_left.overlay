@@ -24,3 +24,9 @@
 &spi0 {
     status = "okay";
 };
+
+/ {
+	vtrackball: virtual_input_trackball {
+		compatible = "zmk,virtual-input";
+	};
+};
