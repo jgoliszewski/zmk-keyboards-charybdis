@@ -27,7 +27,7 @@
         device = <&vtrackball>;
 
         snipe {
-            layers = <MEDIA>;
+            layers = <DEFAULT>,<MEDIA>;
             input-processors = <&xy_scaler 1 8>;
         };
 
